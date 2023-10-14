@@ -21,23 +21,29 @@ public class JDBCRepositoryImpl implements JDBCRepository {
     @Override
     @Transactional
     public List<String> getProductName(String name) {
-        List<Customers> customersList = List.of(Customers.builder()
-                .age(1)
-                .name("alexey")
-                .surname("Petrov")
-                .phoneString("+8 999999")
-                .orders(Orders.builder()
-                        .amount("123")
-                        .date("1.1.1")
-                        .productName("chair")
-                        .build())
-                .build());
-        customersList.forEach(c -> entityManager.persist(c));
         List<String> productNameList = new ArrayList<>();
         List<Customers> customerList = entityManager.createQuery("SELECT customer from Customers customer where customer.name=:name")
                 .setParameter("name", name)
                 .getResultList();
         customerList.forEach(customer -> productNameList.add(customer.getOrders().getProductName()));
         return productNameList;
+    }
+
+    @Override
+    @Transactional
+    public void addCustomer(int age, String name, String surname, String phone, String amount, String date, String productName) {
+        Customers customer = Customers.builder()
+                .age(age)
+                .name(name)
+                .surname(surname)
+                .phoneString(phone)
+                .orders(Orders.builder()
+                        .amount(amount)
+                        .date(date)
+                        .productName(productName)
+                        .build())
+                .build();
+        entityManager.persist(customer);
+
     }
 }

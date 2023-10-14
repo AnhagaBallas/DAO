@@ -15,6 +15,7 @@ public class JDBCController {
 
     @GetMapping("/products/fetch-product")
     public List<String> productNameFromSql(@RequestParam String name) {
+        service.addCustomer(22,"alexey","Petrov","+7999999","2000","12.09.2010","chair");
         return service.getProductNameList(name);
     }
 }

@@ -16,5 +16,9 @@ public class JDBCServiceImpl implements JDBCService{
     public List<String> getProductNameList(String name) {
         return repository.getProductName(name);
     }
+    @Override
+    public void addCustomer(int age,String name,String surname,String phone,String amount,String date,String productName){
+        repository.addCustomer(age,name,surname,phone,amount,date,productName);
+    }
 
 }

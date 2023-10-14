@@ -1,9 +1,6 @@
 package com.netology.daohibarnate.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,18 +13,8 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "PERSON", schema = "netology")
 public class Person {
-
-    @Id
-    @Column(nullable = false)
-    private String name;
-
-    @Id
-    @Column(nullable = false)
-    private String surname;
-
-    @Id
-    @Column(nullable = false)
-    private String age;
+    @EmbeddedId
+    private PersonalData personalData;
 
     @Column(nullable = false)
     private String phone_number;

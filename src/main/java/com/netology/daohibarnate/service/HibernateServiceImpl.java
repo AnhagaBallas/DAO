@@ -1,6 +1,7 @@
 package com.netology.daohibarnate.service;
 
 import com.netology.daohibarnate.model.Person;
+import com.netology.daohibarnate.model.PersonalData;
 import com.netology.daohibarnate.repository.HibernateRepositoryImpl;
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
@@ -17,5 +18,10 @@ public class HibernateServiceImpl implements HibernateService {
     @Override
     public List<Person> getByCity(String city) {
         return hibernateRepository.getPersonByCity(city);
+    }
+
+    @Override
+    public void addPerson(PersonalData personalData, String phoneNumber, String city) {
+        hibernateRepository.addPerson(personalData,phoneNumber,city);
     }
 }

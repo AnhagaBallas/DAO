@@ -1,6 +1,7 @@
 package com.netology.daohibarnate.controller;
 
 import com.netology.daohibarnate.model.Person;
+import com.netology.daohibarnate.model.PersonalData;
 import com.netology.daohibarnate.service.HibernateServiceImpl;
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
@@ -19,6 +20,12 @@ public class HibernateController {
 
     @GetMapping("/persons/by-city")
     public List<Person> getByCity(@RequestParam String city) {
+        hibernateService.addPerson(PersonalData.builder()
+                .age("22")
+                .name("Ivan")
+                .surname("Petrov")
+                .build(), "+799999", "Moscow"
+        );
         return hibernateService.getByCity(city);
     }
 }
